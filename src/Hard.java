@@ -61,5 +61,6 @@ public class Hard {
     public int hashCode() {
 
         return Objects.hash(getDiscModel(), getDiscAmount(), getHardType());
+
     }
 }
