@@ -1,3 +1,8 @@
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Scanner;
+import java.util.TreeMap;
+
 public class Main {
     public static void main(String[] args) {
 //        Створити класс Компьютер з полями
@@ -35,7 +40,7 @@ public class Main {
         Hard BetterHard = new Hard("Givi", 600, HardType.HDD);
         Hard JustOneHard = new Hard("Intel", 1024,HardType.HDD);
         Hard GoodHard = new Hard("Megatron", 2048,HardType.SSD);
-        Hard IntelHard = new Hard("Intel", 900,HardType.SSD);
+        Hard IntelHard = new Hard("Intel", 400,HardType.SSD);
 
         Computer IntelSlim = new Computer
         ("Intel SuperSlim", 2015,16,700,IntelHard,CountryProducer.EUROPE,IntelCore3);
@@ -63,5 +68,81 @@ public class Main {
         ("Hiomi",2015,6,300,BetterHard,CountryProducer.CHINA,SomeAMD);
         Computer Huaway = new Computer
         ("Huaway",2017,12,600,IntelHard,CountryProducer.USA,BetterAMD);
+
+        Map<Integer,Computer> computerMap = new HashMap<>();
+        computerMap.put(0,IntelSlim); computerMap.put(1,DellInspiron); computerMap.put(2,ZXSpectrum);
+        computerMap.put(3,HP2350); computerMap.put(4,LenovoIsBad); computerMap.put(5,DellSlim);
+        computerMap.put(6,LonovoAlwaysBad); computerMap.put(7,SomeHP); computerMap.put(8,MacBook);
+        computerMap.put(9,MacBookPro); computerMap.put(10, SamsungAndromeda); computerMap.put(11,Hiomi);
+        computerMap.put(12,Huaway);
+            // ПИШУ ЛОГІКУ
+
+        Scanner scanner = new Scanner(System.in);
+
+        // MainMenu
+        System.out.println("Що робимо ?");
+        int MainMenuOption = scanner.nextInt();
+
+        switch (MainMenuOption) {
+            case 1:
+                System.out.println("Знайти всі комп'ютери які мають рік випуску більше ніж 2010");
+                for (int i = 0; i < computerMap.size(); i++) {
+                    if (computerMap.get(i).yearOfPoduct > 2010) {
+                        System.out.println(computerMap.get(i));
+                    }
+                }
+
+                break;
+            case 2:
+                System.out.println("Знайти всі комп'ютери які мають рік випуску більше ніж 2010 та країну виробник Китай");
+                for (int i = 0; i < computerMap.size(); i++) {
+                    if (computerMap.get(i).yearOfPoduct > 2010 && computerMap.get(i).computerProducer == CountryProducer.CHINA) {
+                        System.out.println(computerMap.get(i));
+                    }
+                }
+
+                break;
+            case 3:
+                System.out.println("Знайти всі комп'ютери які мають рік випуску більше ніж 2010 та країну виробник не Китай");
+                for (int i = 0; i < computerMap.size(); i++) {
+                    if (computerMap.get(i).yearOfPoduct > 2010 && computerMap.get(i).computerProducer != CountryProducer.CHINA) {
+                        System.out.println(computerMap.get(i));
+                    }
+                }
+
+                break;
+            case 4:
+                System.out.println("Знайти всі комп'ютери які мають жорсткий диск більше 500гб");
+                for (int i = 0; i < computerMap.size(); i++) {
+                    if (computerMap.get(i).hard.discAmount > 500) {
+                        System.out.println(computerMap.get(i));
+                    }
+                }
+
+                break;
+            case 5:
+                System.out.println("Знайти всі комп'ютери які мають жорсткий ссд диск більше 500гб та процессор і7");
+                for (int i = 0; i < computerMap.size(); i++) {
+                    if (computerMap.get(i).hard.hardType == HardType.SSD && computerMap.get(i).hard.discAmount > 500 && computerMap.get(i).processor.cores >= 7) {
+                        System.out.println(computerMap.get(i));
+                    }
+                }
+
+
+                break;
+            case 6:
+                System.out.println("Знайти всі комп'ютери які мають жорсткий ссд диск більше 500гб та процессор і7 посортувати за ціною");
+                Map<Integer,Computer> sortCompMap = new TreeMap<>();
+                for (int i = 0; i < computerMap.size(); i++) {
+                    if (computerMap.get(i).hard.hardType == HardType.SSD && computerMap.get(i).hard.discAmount > 500 && computerMap.get(i).processor.cores >= 7) {
+                        sortCompMap.put(sortCompMap.size()+1, computerMap.get(i));
+                    }
+                }
+                System.out.println(sortCompMap);
+
+
+                break;
+        }
+
     }
 }
