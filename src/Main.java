@@ -1,7 +1,5 @@
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Scanner;
-import java.util.TreeMap;
+import java.util.*;
+import java.util.stream.Stream;
 
 public class Main {
     public static void main(String[] args) {
@@ -86,11 +84,13 @@ public class Main {
         switch (MainMenuOption) {
             case 1:
                 System.out.println("Знайти всі комп'ютери які мають рік випуску більше ніж 2010");
-                for (int i = 0; i < computerMap.size(); i++) {
-                    if (computerMap.get(i).yearOfPoduct > 2010) {
-                        System.out.println(computerMap.get(i));
-                    }
-                }
+//                for (int i = 0; i < computerMap.size(); i++) {
+//                    if (computerMap.get(i).yearOfPoduct > 2010) {
+//                        System.out.println(computerMap.get(i));
+//                    }
+//                }
+                Stream<Computer>  yearOfProduce2010 = computerMap.entrySet().stream()
+                        .
 
                 break;
             case 2:
