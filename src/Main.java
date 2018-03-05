@@ -90,7 +90,7 @@ public class Main {
 //                    }
 //                }
                 Stream<Computer>  yearOfProduce2010 = computerMap.entrySet().stream()
-                        .
+                        .filter(integerComputerEntry -> ??????)
 
                 break;
             case 2:
